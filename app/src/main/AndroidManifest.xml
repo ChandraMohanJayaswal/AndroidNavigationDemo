@@ -13,7 +13,10 @@
         android:theme="@style/Theme.LoginDemoApp"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.ActivityHome"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ActivityLogin"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.LoginDemoApp">

@@ -1,5 +1,6 @@
-package com.example.logindemoapp
+package com.example.logindemoapp.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,36 +13,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.logindemoapp.ui.theme.LoginDemoAppTheme
+import com.example.logindemoapp.ui.view.ScreenLoginView
 
-class MainActivity : ComponentActivity() {
+class ActivityLogin : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             LoginDemoAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                ScreenLoginView(loginButtonAction = {
+                    loginButtonClicked()
+                })
             }
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    LoginDemoAppTheme {
-        Greeting("Android")
+    private fun loginButtonClicked() {
+        val intent = Intent(this,ActivityHome::class.java)
+        startActivity(intent)
     }
 }
