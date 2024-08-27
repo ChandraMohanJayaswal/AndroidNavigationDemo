@@ -75,4 +75,7 @@ dependencies {
     implementation ("androidx.compose.material:material:1.5.0") // Use the latest version
     implementation ("androidx.compose.ui:ui-tooling-preview:1.5.0")
     implementation ("androidx.compose.ui:ui:1.5.0")
+
+    // top app bar material design dependency
+    implementation ("androidx.compose.material:material:1.5.0")
 }
