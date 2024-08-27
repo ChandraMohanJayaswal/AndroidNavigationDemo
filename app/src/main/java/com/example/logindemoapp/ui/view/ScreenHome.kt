@@ -11,8 +11,11 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -20,6 +23,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.logindemoapp.ui.theme.LoginDemoAppTheme
 import com.example.logindemoapp.ui.view.navview.BottomNavItems
+import com.example.logindemoapp.ui.view.navview.NavCoordinator
 import com.example.logindemoapp.ui.view.navview.ScreenNavActivitiesView
 import com.example.logindemoapp.ui.view.navview.ScreenNavGroupsView
 import com.example.logindemoapp.ui.view.navview.ScreenNavHomeView
@@ -34,9 +38,12 @@ fun ScreenHomeView(
 ) {
     val navitems = getNavItems()
     val navController = rememberNavController()
+    val coordinator: NavCoordinator = remember { NavCoordinator(navController) }
+    val currentBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = currentBackStackEntry?.destination?.route ?: "home_screen"
     Scaffold(
         bottomBar = {
-            BottomNavigationBar(navController, navitems)
+            BottomNavigationBar(navController,coordinator, navitems)
         },
         topBar = {TopApplicationBar(logOutAction = logOutAction)}
     ) { innerPadding ->
@@ -44,7 +51,7 @@ fun ScreenHomeView(
             navController = navController, startDestination = "home_screen"
         ) {
             composable(route = "home_screen") {
-                ScreenNavHomeView()
+               ScreenNavHomeView()
             }
             composable(route = "activity_screen") {
                 ScreenNavActivitiesView()
@@ -82,20 +89,19 @@ fun TopApplicationBar(
 
 @Composable
 fun BottomNavigationBar(
-    navController: NavHostController,
+    navController: NavController,
+   coordinator: NavCoordinator,
     navitems: List<BottomNavItems>) {
     BottomNavigation(
         modifier = Modifier.navigationBarsPadding()
     ) {
         navitems.forEachIndexed { index, item ->
+            val isSelected = navController.currentBackStackEntryAsState().value?.destination?.route == item.route
             BottomNavigationItem(
-                selected = navController.currentBackStackEntryAsState().value?.destination?.route == item.route,
+                selected = isSelected,
                 onClick = {
-                    navController.navigate(item.route) {
-                        // To avoid stack build-up
-                        // Pop up to the start destination of the graph to avoid building up the back stack
-                        popUpTo = navController.graph.startDestinationId
-                        launchSingleTop = true
+                    if (!isSelected) {
+                        coordinator.nagivateTo(item.route)
                     }
                 },
                 icon = {
