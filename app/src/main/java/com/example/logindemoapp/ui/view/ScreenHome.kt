@@ -1,88 +1,111 @@
 package com.example.logindemoapp.ui.view
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.IconButton
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
+
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.logindemoapp.R
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import com.example.logindemoapp.ui.theme.LoginDemoAppTheme
+import com.example.logindemoapp.ui.view.navview.BottomNavItems
+import com.example.logindemoapp.ui.view.navview.ScreenNavActivitiesView
+import com.example.logindemoapp.ui.view.navview.ScreenNavGroupsView
+import com.example.logindemoapp.ui.view.navview.ScreenNavHomeView
+import com.example.logindemoapp.ui.view.navview.ScreenNavResourcesView
+import com.example.logindemoapp.ui.view.navview.ScreenNavSkillView
+import com.example.logindemoapp.ui.view.navview.getNavItems
+
 
 @Composable
 fun ScreenHomeView(
     logOutAction: () -> Unit
-){
-    Column(modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally) {
-        BottomNavigationSample(logOutAction =logOutAction )
-
+) {
+    val navitems = getNavItems()
+    val navController = rememberNavController()
+    Scaffold(
+        bottomBar = {
+            BottomNavigationBar(navController, navitems)
+        },
+        topBar = {TopApplicationBar(logOutAction = logOutAction)}
+    ) { innerPadding ->
+        NavHost(
+            navController = navController, startDestination = "home_screen"
+        ) {
+            composable(route = "home_screen") {
+                ScreenNavHomeView()
+            }
+            composable(route = "activity_screen") {
+                ScreenNavActivitiesView()
+            }
+            composable(route = "skill_screen") {
+                ScreenNavSkillView()
+            }
+            composable(route = "group_screen") {
+                ScreenNavGroupsView()
+            }
+            composable(route = "resources_screen") {
+                ScreenNavResourcesView()
+            }
+        }
     }
 }
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BottomNavigationSample(
-    logOutAction : (()->Unit)
-){
-    val context = LocalContext.current
-    var seletedItem by remember { mutableStateOf(0)}
-    val items = listOf(
-        context.getString(R.string.item1),
-        context.getString(R.string.item2),
-        context.getString(R.string.item3)
-    )
-
-    Scaffold (
-        bottomBar = {
-            BottomNavigation (modifier = Modifier.navigationBarsPadding()){
-                items.forEachIndexed{index,item ->
-                    BottomNavigationItem(
-                        selected =seletedItem==index ,
-                        onClick = {seletedItem = index },
-                        icon = {
-                            Icon(Icons.Filled.Favorite, contentDescription ="fav" )
-                        },
-                        label = { Text(text = "$item")})
+fun TopApplicationBar(
+    logOutAction : (()->Unit)) {
+        TopAppBar(
+            title = {
+                Text("My App Bar")
+            },
+            actions = {
+                // Button in the TopAppBar
+                Button(onClick = { logOutAction()
+                }) {
+                    androidx.compose.material.Text(text = "LogOut")
                 }
             }
-        },
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text("My App Bar")
+        )
+}
+
+@Composable
+fun BottomNavigationBar(
+    navController: NavHostController,
+    navitems: List<BottomNavItems>) {
+    BottomNavigation(
+        modifier = Modifier.navigationBarsPadding()
+    ) {
+        navitems.forEachIndexed { index, item ->
+            BottomNavigationItem(
+                selected = navController.currentBackStackEntryAsState().value?.destination?.route == item.route,
+                onClick = {
+                    navController.navigate(item.route) {
+                        // To avoid stack build-up
+                        // Pop up to the start destination of the graph to avoid building up the back stack
+                        popUpTo = navController.graph.startDestinationId
+                        launchSingleTop = true
+                    }
                 },
-                actions = {
-                    // Button in the TopAppBar
-                 Button(onClick = {
-                     logOutAction()
-                 }) {
-                     androidx.compose.material.Text(text = "LogOut")
-                 }
-                }
+                icon = {
+                    Icon(item.icon, contentDescription = item.label)
+                },
+                label = { Text(item.label) }
             )
         }
-    ){ innerPadding ->
-        // Your screen content goes here, with the padding applied
     }
+
 }
 @Preview(showBackground = true)
 @Composable

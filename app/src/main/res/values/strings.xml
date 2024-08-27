@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">LoginDemoApp</string>
     <string name="item1">Home</string>
-    <string name="item2">About</string>
-    <string name="item3">Help</string>
+    <string name="item2">Activities</string>
+    <string name="item3">Skill</string>
+    <string name="item4">Groups</string>
+    <string name="item5">Resources</string>
 
 </resources>
