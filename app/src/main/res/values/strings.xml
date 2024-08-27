@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">LoginDemoApp</string>
+    <string name="item1">Home</string>
+    <string name="item2">About</string>
+    <string name="item3">Help</string>
+
 </resources>
