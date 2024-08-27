@@ -7,6 +7,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 
 import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -92,12 +94,12 @@ fun BottomNavigationBar(
     navController: NavController,
    coordinator: NavCoordinator,
     navitems: List<BottomNavItems>) {
-    BottomNavigation(
+    NavigationBar(
         modifier = Modifier.navigationBarsPadding()
     ) {
         navitems.forEachIndexed { index, item ->
             val isSelected = navController.currentBackStackEntryAsState().value?.destination?.route == item.route
-            BottomNavigationItem(
+            NavigationBarItem(
                 selected = isSelected,
                 onClick = {
                     if (!isSelected) {
