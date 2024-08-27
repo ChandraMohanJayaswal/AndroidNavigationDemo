@@ -1,11 +1,9 @@
 package com.example.logindemoapp.ui.view
 
 import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
+
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
-
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -18,7 +16,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
