@@ -1,4 +1,5 @@
-package com.example.logindemoapp.ui.view.navview
+package com.example.logindemoapp.coordinator
+
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
@@ -11,15 +12,19 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.logindemoapp.ui.view.navview.ScreenNavActivitiesView
+import com.example.logindemoapp.ui.view.navview.ScreenNavGroupsView
+import com.example.logindemoapp.ui.view.navview.ScreenNavHomeView
+import com.example.logindemoapp.ui.view.navview.ScreenNavResourcesView
+import com.example.logindemoapp.ui.view.navview.ScreenNavSkillView
 
-interface NavCoordinatorInterface{
-   fun nagivateTo(route : String)
+interface NavCoordinatorInterface {
+    fun nagivateTo(route: String)
 }
-
 
 class NavCoordinator(
     val navController: NavHostController
-)  : NavCoordinatorInterface {
+) : NavCoordinatorInterface {
 
     override fun nagivateTo(route: String) {
         navController.navigate(route) {
@@ -35,8 +40,7 @@ class NavCoordinator(
     @Composable
     fun NavigationHost(
         innerPadding: PaddingValues,
-        startDestination: String,
-
+        startDestination: String
         ) {
 
         NavHost(
@@ -61,22 +65,19 @@ class NavCoordinator(
         }
     }
 
-
-    fun getNavItems() : List<BottomNavItems>{
+    fun getNavItems(): List<BottomNavItems> {
         return listOf(
-            BottomNavItems("Home", Icons.Filled.Home,"home_screen"),
-            BottomNavItems("Activities", Icons.Filled.AddCircle,"activity_screen"),
-            BottomNavItems("Skill", Icons.Filled.AccountCircle,"skill_screen"),
-            BottomNavItems("Groups", Icons.Filled.CheckCircle,"group_screen"),
-            BottomNavItems("Resources", Icons.Filled.Info,"resources_screen")
+            BottomNavItems("Home", Icons.Filled.Home, "home_screen"),
+            BottomNavItems("Activities", Icons.Filled.AddCircle, "activity_screen"),
+            BottomNavItems("Skill", Icons.Filled.AccountCircle, "skill_screen"),
+            BottomNavItems("Groups", Icons.Filled.CheckCircle, "group_screen"),
+            BottomNavItems("Resources", Icons.Filled.Info, "resources_screen")
         )
     }
-
 }
 
-
-data class BottomNavItems (
-    val label : String,
-    val icon : ImageVector,
-    val route : String
+data class BottomNavItems(
+    val label: String,
+    val icon: ImageVector,
+    val route: String
 )
