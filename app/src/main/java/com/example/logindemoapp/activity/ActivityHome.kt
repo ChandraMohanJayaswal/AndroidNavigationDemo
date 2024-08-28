@@ -14,7 +14,9 @@ class ActivityHome : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             LoginDemoAppTheme {
-                ScreenHomeView(logOutAction = {
+                ScreenHomeView(
+                    startDestination = "home_screen",
+                    logOutAction = {
                     logOutButtonCliked()
                 })
             }
