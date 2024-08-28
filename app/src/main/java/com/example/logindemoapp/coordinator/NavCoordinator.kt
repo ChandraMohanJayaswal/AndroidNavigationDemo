@@ -53,19 +53,19 @@ class NavCoordinator(
             startDestination = startDestination
         ) {
             composable(route = "home_screen") {
-                ScreenNavHomeView()
+                ScreenNavHomeView(innerPadding)
             }
             composable(route = "activity_screen") {
-                ScreenNavActivitiesView()
+                ScreenNavActivitiesView(innerPadding)
             }
             composable(route = "skill_screen") {
-                ScreenNavSkillView()
+                ScreenNavSkillView(innerPadding)
             }
             composable(route = "group_screen") {
-                ScreenNavGroupsView()
+                ScreenNavGroupsView(innerPadding)
             }
             composable(route = "resources_screen") {
-                ScreenNavResourcesView()
+                ScreenNavResourcesView(innerPadding)
             }
             composable(route = "log_screen") {
                 ScreenLoginView(loginBtnAction,coordinator)
@@ -81,11 +81,11 @@ class NavCoordinator(
 
     fun getNavItems(): List<BottomNavItems> {
         return listOf(
-            BottomNavItems(NavItems.HOME.label, Icons.Filled.Home, NavItems.HOME.route),
-            BottomNavItems(NavItems.ACTIVITY.label, Icons.Filled.AddCircle,NavItems.ACTIVITY.route ),
-            BottomNavItems(NavItems.SKILL.label, Icons.Filled.AccountCircle, NavItems.SKILL.route),
-            BottomNavItems(NavItems.GROUP.label, Icons.Filled.CheckCircle, NavItems.GROUP.route),
-            BottomNavItems(NavItems.RESOURCE.label, Icons.Filled.Info, NavItems.RESOURCE.route)
+            BottomNavItems(NavItems.HOME.title, NavItems.HOME.icon, NavItems.HOME.route),
+            BottomNavItems(NavItems.ACTIVITY.title, NavItems.ACTIVITY.icon,NavItems.ACTIVITY.route ),
+            BottomNavItems(NavItems.SKILL.title, NavItems.SKILL.icon, NavItems.SKILL.route),
+            BottomNavItems(NavItems.GROUP.title, NavItems.GROUP.icon, NavItems.GROUP.route),
+            BottomNavItems(NavItems.RESOURCE.title, NavItems.RESOURCE.icon, NavItems.RESOURCE.route)
         )
     }
 }
@@ -95,13 +95,15 @@ data class BottomNavItems(
     val icon: ImageVector,
     val route: String
 )
+
 enum class NavItems(
-    val label : String,
-    val route : String
+    val title : String,
+    val route : String,
+    val icon: ImageVector
 ){
-    HOME("Home","home_screen"),
-    ACTIVITY("Activities","activity_screen"),
-    SKILL("Skill","skill_screen"),
-    GROUP("Groups","group_screen"),
-    RESOURCE("Resources","resources_screen")
+    HOME("Home","home_screen", icon = Icons.Filled.Home),
+    ACTIVITY("Activities","activity_screen", icon = Icons.Filled.AddCircle),
+    SKILL("Skill","skill_screen", icon = Icons.Filled.AccountCircle),
+    GROUP("Groups","group_screen", icon = Icons.Filled.CheckCircle),
+    RESOURCE("Resources","resources_screen", icon = Icons.Filled.Info)
 }
