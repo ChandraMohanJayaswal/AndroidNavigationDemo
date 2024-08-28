@@ -2,6 +2,7 @@ package com.example.logindemoapp.ui.view
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -13,12 +14,15 @@ import com.example.logindemoapp.ui.theme.LoginDemoAppTheme
 
 @Composable
 fun ScreenLoginView(
-    loginButtonAction : (()->Unit)
+    innerPadding: PaddingValues,
+    loginButtonAction : ( () -> Unit )
 ){
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally) {
+        horizontalAlignment = Alignment.CenterHorizontally
+    )
+    {
         Button(
             onClick = { loginButtonAction() }
         ) {
@@ -26,10 +30,13 @@ fun ScreenLoginView(
         }
     }
 }
-@Preview(showBackground = true)
+
+@Preview
 @Composable
 fun ScreenLoginViewPreview(){
     LoginDemoAppTheme {
-        ScreenLoginView(loginButtonAction = {})
+        ScreenLoginView(innerPadding = PaddingValues(),
+        loginButtonAction = { /* No-op for preview */ }
+        )
     }
 }

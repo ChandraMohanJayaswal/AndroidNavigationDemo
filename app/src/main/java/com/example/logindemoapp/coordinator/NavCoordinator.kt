@@ -48,19 +48,19 @@ class NavCoordinator(
             startDestination = startDestination
         ) {
             composable(route = "home_screen") {
-                ScreenNavHomeView()
+                ScreenNavHomeView(innerPadding)
             }
             composable(route = "activity_screen") {
-                ScreenNavActivitiesView()
+                ScreenNavActivitiesView(innerPadding)
             }
             composable(route = "skill_screen") {
-                ScreenNavSkillView()
+                ScreenNavSkillView(innerPadding)
             }
             composable(route = "group_screen") {
-                ScreenNavGroupsView()
+                ScreenNavGroupsView(innerPadding)
             }
             composable(route = "resources_screen") {
-                ScreenNavResourcesView()
+                ScreenNavResourcesView(innerPadding)
             }
         }
     }
