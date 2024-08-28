@@ -38,33 +38,14 @@ fun ScreenHomeView(
     val navitems = getNavItems()
     val navController = rememberNavController()
     val coordinator: NavCoordinator = remember { NavCoordinator(navController) }
-    val currentBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentRoute = currentBackStackEntry?.destination?.route ?: "home_screen"
+
     Scaffold(
         bottomBar = {
             BottomNavigationBar(navController,coordinator, navitems)
         },
         topBar = {TopApplicationBar(logOutAction = logOutAction)}
     ) { innerPadding ->
-        NavHost(
-            navController = navController, startDestination = "home_screen"
-        ) {
-            composable(route = "home_screen") {
-               ScreenNavHomeView()
-            }
-            composable(route = "activity_screen") {
-                ScreenNavActivitiesView()
-            }
-            composable(route = "skill_screen") {
-                ScreenNavSkillView()
-            }
-            composable(route = "group_screen") {
-                ScreenNavGroupsView()
-            }
-            composable(route = "resources_screen") {
-                ScreenNavResourcesView()
-            }
-        }
+        coordinator.NavigationHost(innerPadding = innerPadding, startDestination = "home_screen")
     }
 }
 
