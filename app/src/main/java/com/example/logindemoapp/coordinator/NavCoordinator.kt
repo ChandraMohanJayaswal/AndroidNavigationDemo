@@ -12,6 +12,9 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.logindemoapp.ui.view.AuthScreen.ScreenForgotPassView
+import com.example.logindemoapp.ui.view.AuthScreen.ScreenLoginView
+import com.example.logindemoapp.ui.view.AuthScreen.ScreenRegisterView
 import com.example.logindemoapp.ui.view.navview.ScreenNavActivitiesView
 import com.example.logindemoapp.ui.view.navview.ScreenNavGroupsView
 import com.example.logindemoapp.ui.view.navview.ScreenNavHomeView
@@ -40,7 +43,9 @@ class NavCoordinator(
     @Composable
     fun NavigationHost(
         innerPadding: PaddingValues,
-        startDestination: String
+        startDestination: String,
+        loginBtnAction : (()->Unit),
+        coordinator : NavCoordinator
         ) {
 
         NavHost(
@@ -61,6 +66,15 @@ class NavCoordinator(
             }
             composable(route = "resources_screen") {
                 ScreenNavResourcesView()
+            }
+            composable(route = "log_screen") {
+                ScreenLoginView(loginBtnAction,coordinator)
+            }
+            composable(route = "register_screen") {
+                ScreenRegisterView(coordinator)
+            }
+            composable(route = "forgot_screen") {
+                ScreenForgotPassView(coordinator)
             }
         }
     }

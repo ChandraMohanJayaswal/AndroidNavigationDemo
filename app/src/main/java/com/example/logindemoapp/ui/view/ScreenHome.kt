@@ -27,7 +27,8 @@ fun ScreenHomeView(
         bottomBar = { BottomBar(coordinator)},
         topBar = { TopBar(logOutAction = logOutAction) }
     ) { innerPadding ->
-        coordinator.NavigationHost(innerPadding = innerPadding, startDestination = startDestination)
+        coordinator.NavigationHost(innerPadding = innerPadding,
+            startDestination = startDestination,logOutAction,coordinator)
     }
 }
 
