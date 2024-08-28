@@ -5,7 +5,7 @@ interface NavCoordinatorInterface{
    fun nagivateTo(route : String)
 }
 class NavCoordinator(
-    val navController: NavHostController
+   private val navController: NavHostController
 )  : NavCoordinatorInterface{
 
     override fun nagivateTo(route: String) {
