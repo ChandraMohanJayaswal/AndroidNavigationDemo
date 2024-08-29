@@ -24,7 +24,7 @@ fun ScreenLoginView(coordinator: NavCoordinator){
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally) {
         Button(
-            onClick = {   coordinator.moveToActivity(ActivityHome::class.java) }
+            onClick = {   coordinator.moveToHomeActivity(ActivityHome::class.java) }
         ) {
            Text(text = "Login")
         }

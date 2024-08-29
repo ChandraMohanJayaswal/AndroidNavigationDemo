@@ -17,7 +17,7 @@ fun TopBar(
         },
         actions = {
             // Button in the TopAppBar
-            Button(onClick = { coordinator.moveToActivity(ActivityLogin::class.java)
+            Button(onClick = { coordinator.moveToLogActivity(ActivityLogin::class.java)
             }) {
                 androidx.compose.material.Text(text = "LogOut")
             }

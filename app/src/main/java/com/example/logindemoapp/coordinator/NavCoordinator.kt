@@ -25,7 +25,8 @@ import com.example.logindemoapp.ui.view.navview.ScreenNavSkillView
 
 interface NavCoordinatorInterface {
     fun nagivateTo(route: String)
-    fun moveToActivity(activityClass: Class<*>)
+    fun moveToHomeActivity(activityClass: Class<*>)
+    fun moveToLogActivity(activityClass: Class<*>)
 }
 
 class NavCoordinator(
@@ -44,12 +45,20 @@ class NavCoordinator(
         }
     }
 
-    override fun moveToActivity(activityClass: Class<*>) {
+    override fun moveToHomeActivity(activityClass: Class<*>) {
         val intent = Intent(context, activityClass)
         // Check if the activity is already in the stack
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
         context.startActivity(intent)
     }
+
+    override fun moveToLogActivity(activityClass: Class<*>) {
+        val intent = Intent(context, activityClass)
+        // Check if the activity is already in the stack
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+        context.startActivity(intent)
+    }
+
 
     @Composable
     fun NavigationHost(
