@@ -12,6 +12,9 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.logindemoapp.ui.view.AuthScreen.ScreenForgotPassView
+import com.example.logindemoapp.ui.view.AuthScreen.ScreenLoginView
+import com.example.logindemoapp.ui.view.AuthScreen.ScreenRegisterView
 import com.example.logindemoapp.ui.view.navview.ScreenNavActivitiesView
 import com.example.logindemoapp.ui.view.navview.ScreenNavGroupsView
 import com.example.logindemoapp.ui.view.navview.ScreenNavHomeView
@@ -40,7 +43,9 @@ class NavCoordinator(
     @Composable
     fun NavigationHost(
         innerPadding: PaddingValues,
-        startDestination: String
+        startDestination: String,
+        loginBtnAction : (()->Unit),
+        coordinator : NavCoordinator
         ) {
 
         NavHost(
@@ -62,16 +67,25 @@ class NavCoordinator(
             composable(route = "resources_screen") {
                 ScreenNavResourcesView(innerPadding)
             }
+            composable(route = "log_screen") {
+                ScreenLoginView(loginBtnAction,coordinator)
+            }
+            composable(route = "register_screen") {
+                ScreenRegisterView(coordinator)
+            }
+            composable(route = "forgot_screen") {
+                ScreenForgotPassView(coordinator)
+            }
         }
     }
 
     fun getNavItems(): List<BottomNavItems> {
         return listOf(
-            BottomNavItems(NavItems.HOME.label, Icons.Filled.Home, NavItems.HOME.route),
-            BottomNavItems(NavItems.ACTIVITY.label, Icons.Filled.AddCircle,NavItems.ACTIVITY.route ),
-            BottomNavItems(NavItems.SKILL.label, Icons.Filled.AccountCircle, NavItems.SKILL.route),
-            BottomNavItems(NavItems.GROUP.label, Icons.Filled.CheckCircle, NavItems.GROUP.route),
-            BottomNavItems(NavItems.RESOURCE.label, Icons.Filled.Info, NavItems.RESOURCE.route)
+            BottomNavItems(NavItems.HOME.title, NavItems.HOME.icon, NavItems.HOME.route),
+            BottomNavItems(NavItems.ACTIVITY.title, NavItems.ACTIVITY.icon,NavItems.ACTIVITY.route ),
+            BottomNavItems(NavItems.SKILL.title, NavItems.SKILL.icon, NavItems.SKILL.route),
+            BottomNavItems(NavItems.GROUP.title, NavItems.GROUP.icon, NavItems.GROUP.route),
+            BottomNavItems(NavItems.RESOURCE.title, NavItems.RESOURCE.icon, NavItems.RESOURCE.route)
         )
     }
 }
@@ -81,14 +95,15 @@ data class BottomNavItems(
     val icon: ImageVector,
     val route: String
 )
-enum class NavItems(
-    val label : String,
-    val route : String
-){
-    HOME("Home","home_screen"),
-    ACTIVITY("Activities","activity_screen"),
-    SKILL("Skill","skill_screen"),
-    GROUP("Groups","group_screen"),
-    RESOURCE("Resources","resources_screen"),
 
+enum class NavItems(
+    val title : String,
+    val route : String,
+    val icon: ImageVector
+){
+    HOME("Home","home_screen", icon = Icons.Filled.Home),
+    ACTIVITY("Activities","activity_screen", icon = Icons.Filled.AddCircle),
+    SKILL("Skill","skill_screen", icon = Icons.Filled.AccountCircle),
+    GROUP("Groups","group_screen", icon = Icons.Filled.CheckCircle),
+    RESOURCE("Resources","resources_screen", icon = Icons.Filled.Info)
 }

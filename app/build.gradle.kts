@@ -79,4 +79,18 @@ dependencies {
 
     // top app bar material design dependency
     implementation ("androidx.compose.material:material:1.5.0")
+
+
+    // Mockito for mocking
+    testImplementation ("org.mockito:mockito-core:5.0.0")
+
+    // Mockito-Kotlin for more concise Kotlin syntax
+    testImplementation ("org.mockito.kotlin:mockito-kotlin:4.0.0")
+
+    // Compose testing dependencies (if not already included)
+    androidTestImplementation ("androidx.compose.ui:ui-test-junit4:1.5.0")
+    debugImplementation ("androidx.compose.ui:ui-tooling:1.5.0")
+
+    // JUnit 4 for unit testing
+    testImplementation ("junit:junit:4.13.2")
 }
