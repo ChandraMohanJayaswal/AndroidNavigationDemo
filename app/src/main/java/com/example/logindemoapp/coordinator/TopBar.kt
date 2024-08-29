@@ -5,6 +5,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import com.example.logindemoapp.activity.ActivityLogin
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -16,7 +17,7 @@ fun TopBar(
         },
         actions = {
             // Button in the TopAppBar
-            Button(onClick = { coordinator.finishActivity()
+            Button(onClick = { coordinator.moveToActivity(ActivityLogin::class.java)
             }) {
                 androidx.compose.material.Text(text = "LogOut")
             }

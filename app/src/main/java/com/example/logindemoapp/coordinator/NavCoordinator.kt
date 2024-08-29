@@ -1,6 +1,5 @@
 package com.example.logindemoapp.coordinator
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import androidx.compose.foundation.layout.PaddingValues
@@ -27,12 +26,11 @@ import com.example.logindemoapp.ui.view.navview.ScreenNavSkillView
 interface NavCoordinatorInterface {
     fun nagivateTo(route: String)
     fun moveToActivity(activityClass: Class<*>)
-    fun finishActivity()
 }
 
 class NavCoordinator(
     val navController: NavHostController,
-    val context : Context
+    private val context : Context
 ) : NavCoordinatorInterface {
 
     override fun nagivateTo(route: String) {
@@ -48,13 +46,9 @@ class NavCoordinator(
 
     override fun moveToActivity(activityClass: Class<*>) {
         val intent = Intent(context, activityClass)
+        // Check if the activity is already in the stack
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
         context.startActivity(intent)
-    }
-
-
-    override fun finishActivity() {
-        val activity = context as? Activity
-        activity?.finish()
     }
 
     @Composable
