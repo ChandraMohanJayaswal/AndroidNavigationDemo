@@ -31,7 +31,7 @@ fun AppBarRegisterScreenView(coordinator: NavCoordinator) {
             // Button in the TopAppBar
            Icon(Icons.Filled.ArrowBack, contentDescription = "",
                modifier = Modifier.clickable {
-                   coordinator.navController.popBackStack()
+                   coordinator.popBackScreen()
                })
         }
     )

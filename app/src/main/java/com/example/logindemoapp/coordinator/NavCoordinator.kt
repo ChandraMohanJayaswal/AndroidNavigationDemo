@@ -26,6 +26,7 @@ import com.example.logindemoapp.ui.view.navview.ScreenNavSkillView
 interface NavCoordinatorInterface {
     fun nagivateTo(route: String)
     fun startNewActivity(activityClass: Class<*>)
+    fun popBackScreen()
 }
 
 class NavCoordinator(
@@ -49,6 +50,10 @@ class NavCoordinator(
         context.startActivity(intent)
     }
 
+    override fun popBackScreen() {
+        navController.popBackStack()
+    }
+
     @Composable
     fun NavigationHost(
         innerPadding: PaddingValues,
@@ -60,28 +65,28 @@ class NavCoordinator(
             navController = navController,
             startDestination = startDestination
         ) {
-            composable(route = "home_screen") {
+            composable(route = NavItems.HOME.route) {
                 ScreenNavHomeView(innerPadding)
             }
-            composable(route = "activity_screen") {
+            composable(route = NavItems.ACTIVITY.route) {
                 ScreenNavActivitiesView(innerPadding)
             }
-            composable(route = "skill_screen") {
+            composable(route = NavItems.SKILL.route) {
                 ScreenNavSkillView(innerPadding)
             }
-            composable(route = "group_screen") {
+            composable(route = NavItems.GROUP.route) {
                 ScreenNavGroupsView(innerPadding)
             }
-            composable(route = "resources_screen") {
+            composable(route = NavItems.RESOURCE.route) {
                 ScreenNavResourcesView(innerPadding)
             }
-            composable(route = "log_screen") {
+            composable(route = NavItems.LOG.route) {
                 ScreenLoginView(coordinator)
             }
-            composable(route = "register_screen") {
+            composable(route = NavItems.REGISTER.route) {
                 ScreenRegisterView(coordinator)
             }
-            composable(route = "forgot_screen") {
+            composable(route = NavItems.FORGOT.route) {
                 ScreenForgotPassView(coordinator)
             }
         }
@@ -113,5 +118,8 @@ enum class NavItems(
     ACTIVITY("Activities","activity_screen", icon = Icons.Filled.AddCircle),
     SKILL("Skill","skill_screen", icon = Icons.Filled.AccountCircle),
     GROUP("Groups","group_screen", icon = Icons.Filled.CheckCircle),
-    RESOURCE("Resources","resources_screen", icon = Icons.Filled.Info)
+    RESOURCE("Resources","resources_screen", icon = Icons.Filled.Info),
+    LOG("Log","log_screen",icon = Icons.Filled.Info),
+    REGISTER("Register","register_screen",icon = Icons.Filled.Info),
+    FORGOT("Forget","forgot_screen",icon = Icons.Filled.Info)
 }
