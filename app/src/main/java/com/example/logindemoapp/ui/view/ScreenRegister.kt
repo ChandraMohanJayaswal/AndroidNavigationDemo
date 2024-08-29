@@ -13,57 +13,31 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.logindemoapp.ui.theme.LoginDemoAppTheme
 
 @Composable
-fun ScreenLoginView(
+fun ScreenRegisterView(
     innerPadding: PaddingValues,
-    loginButtonAction: (() -> Unit),
-    registerButtonAction: (() -> Unit),
-    forgetPasswordButtonAction: (() -> Unit)
-){
+    backButtonAction: (() -> Unit)
+) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
-    )
-    {
+    ) {
+        Text(text = "Register Screen")
         Button(
-            onClick = { loginButtonAction() }
+            onClick = { backButtonAction() }
         ) {
-           Text(text = "Login")
-        }
-        Button(
-            onClick = { registerButtonAction()  }
-        ) {
-            Text(text = "Register")
-        }
-        Button(
-            onClick = {forgetPasswordButtonAction() }
-        ) {
-            Text(text = "Forget Password")
+            Text(text = "Back")
         }
     }
-
-
 }
-
-//@Preview
-//@Composable
-//fun ScreenLoginViewPreview(){
-//    LoginDemoAppTheme {
-//        ScreenLoginView(
-//            innerPadding = PaddingValues()
-//        ) {}
-//    }
-//}
 
 @Preview
 @Composable
-fun ScreenLoginViewPreview() {
+fun ScreenRegisterViewPreview() {
     LoginDemoAppTheme {
-        ScreenLoginView(
+        ScreenRegisterView(
             innerPadding = PaddingValues(),
-            loginButtonAction = {},
-            registerButtonAction = {},
-            forgetPasswordButtonAction = {}
+            backButtonAction = {}
         )
     }
 }

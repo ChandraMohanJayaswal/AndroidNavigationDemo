@@ -16,15 +16,28 @@ class ActivityLogin : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             LoginDemoAppTheme {
-                ScreenLoginView(innerPadding = PaddingValues(),loginButtonAction = {
-                    loginButtonClicked()
-                })
+                ScreenLoginView(
+                    innerPadding = PaddingValues(),
+                    loginButtonAction = { loginButtonClicked() },
+                    registerButtonAction = { registerButtonClicked() },
+                    forgetPasswordButtonAction = { forgetPasswordButtonClicked() }
+                )
             }
         }
     }
 
     private fun loginButtonClicked() {
         val intent = Intent(this,ActivityHome::class.java)
+        startActivity(intent)
+    }
+
+    private fun registerButtonClicked() {
+        val intent = Intent(this,ActivityRegister::class.java)
+        startActivity(intent)
+    }
+
+    private fun forgetPasswordButtonClicked() {
+        val intent = Intent(this, ActivityForgetPassword::class.java)
         startActivity(intent)
     }
 }

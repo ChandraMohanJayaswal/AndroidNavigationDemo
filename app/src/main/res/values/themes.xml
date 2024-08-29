@@ -1,5 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<resources>-->
 
-    <style name="Theme.LoginDemoApp" parent="android:Theme.Material.Light.NoActionBar" />
+<!--    <style name="Theme.LoginDemoApp" parent="android:Theme.Material.Light.NoActionBar" />-->
+<!--</resources>-->
+
+
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme -->
+    <style name="Theme.LoginDemoApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    </style>
+
 </resources>

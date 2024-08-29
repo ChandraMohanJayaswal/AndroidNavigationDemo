@@ -89,5 +89,6 @@ enum class NavItems(
     ACTIVITY("Activities","activity_screen"),
     SKILL("Skill","skill_screen"),
     GROUP("Groups","group_screen"),
-    RESOURCE("Resources","resources_screen")
+    RESOURCE("Resources","resources_screen"),
+
 }

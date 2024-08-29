@@ -1,11 +1,7 @@
 package com.example.logindemoapp.ui.view
 
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.material3.Button
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
@@ -37,8 +33,9 @@ fun ScreenHomeView(
 @Composable
 fun ScreenHomeViewPreview(){
     LoginDemoAppTheme {
-        ScreenHomeView(innerPadding = PaddingValues(),
+        ScreenHomeView(
+            innerPadding = PaddingValues(),
             startDestination = "home_screen",
-            logOutAction = { /* No-op for preview */ }  )
+            logOutAction = { }  )
     }
 }
