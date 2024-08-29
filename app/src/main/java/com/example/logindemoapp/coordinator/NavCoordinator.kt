@@ -1,5 +1,6 @@
 package com.example.logindemoapp.coordinator
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import androidx.compose.foundation.layout.PaddingValues
@@ -26,7 +27,7 @@ import com.example.logindemoapp.ui.view.navview.ScreenNavSkillView
 interface NavCoordinatorInterface {
     fun nagivateTo(route: String)
     fun startNewActivity(activityClass: Class<*>)
-    fun popBackScreen()
+    fun finishActivity()
 }
 
 class NavCoordinator(
@@ -50,8 +51,10 @@ class NavCoordinator(
         context.startActivity(intent)
     }
 
-    override fun popBackScreen() {
-        navController.popBackStack()
+
+    override fun finishActivity() {
+        val activity = context as? Activity
+        activity?.finish()
     }
 
     @Composable

@@ -9,14 +9,14 @@ import androidx.compose.runtime.Composable
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(
-    logOutAction : (()->Unit)) {
+    coordinator: NavCoordinator) {
     TopAppBar(
         title = {
             Text("My App Bar")
         },
         actions = {
             // Button in the TopAppBar
-            Button(onClick = { logOutAction()
+            Button(onClick = { coordinator.finishActivity()
             }) {
                 androidx.compose.material.Text(text = "LogOut")
             }

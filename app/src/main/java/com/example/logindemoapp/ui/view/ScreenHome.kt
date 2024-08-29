@@ -16,8 +16,7 @@ import com.example.logindemoapp.ui.theme.LoginDemoAppTheme
 @Composable
 fun ScreenHomeView(
     innerPadding: PaddingValues,
-    startDestination: String,
-    logOutAction: () -> Unit
+    startDestination: String
 ) {
     val context = LocalContext.current
     val navController = rememberNavController()
@@ -25,7 +24,7 @@ fun ScreenHomeView(
 
     Scaffold(
         bottomBar = { BottomBar(coordinator)},
-        topBar = { TopBar(logOutAction = logOutAction) }
+        topBar = { TopBar(coordinator) }
     ) { innerPadding ->
         coordinator.NavigationHost(innerPadding = innerPadding,
             startDestination = startDestination,coordinator)
@@ -38,7 +37,6 @@ fun ScreenHomeViewPreview(){
     LoginDemoAppTheme {
         ScreenHomeView(
             innerPadding = PaddingValues(),
-            startDestination = "home_screen",
-            logOutAction = { }  )
+            startDestination = "home_screen")
     }
 }

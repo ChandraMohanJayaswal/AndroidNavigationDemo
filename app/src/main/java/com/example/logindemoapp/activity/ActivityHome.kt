@@ -19,15 +19,8 @@ class ActivityHome : ComponentActivity() {
             LoginDemoAppTheme {
                 ScreenHomeView(
                     innerPadding = PaddingValues(),
-                    startDestination = NavItems.HOME.route,
-                    logOutAction = {
-                    logOutButtonCliked()
-                })
+                    startDestination = NavItems.HOME.route)
             }
         }
-    }
-
-    private fun logOutButtonCliked() {
-        finish()
     }
 }
