@@ -1,5 +1,7 @@
 package com.example.logindemoapp.coordinator
 
+import android.content.Context
+import android.content.Intent
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
@@ -23,10 +25,12 @@ import com.example.logindemoapp.ui.view.navview.ScreenNavSkillView
 
 interface NavCoordinatorInterface {
     fun nagivateTo(route: String)
+    fun startNewActivity(activityClass: Class<*>)
 }
 
 class NavCoordinator(
-    val navController: NavHostController
+    val navController: NavHostController,
+    val context : Context
 ) : NavCoordinatorInterface {
 
     override fun nagivateTo(route: String) {
@@ -40,11 +44,15 @@ class NavCoordinator(
         }
     }
 
+    override fun startNewActivity(activityClass: Class<*>) {
+        val intent = Intent(context, activityClass)
+        context.startActivity(intent)
+    }
+
     @Composable
     fun NavigationHost(
         innerPadding: PaddingValues,
         startDestination: String,
-        loginBtnAction : (()->Unit),
         coordinator : NavCoordinator
         ) {
 
@@ -68,7 +76,7 @@ class NavCoordinator(
                 ScreenNavResourcesView(innerPadding)
             }
             composable(route = "log_screen") {
-                ScreenLoginView(loginBtnAction,coordinator)
+                ScreenLoginView(coordinator)
             }
             composable(route = "register_screen") {
                 ScreenRegisterView(coordinator)

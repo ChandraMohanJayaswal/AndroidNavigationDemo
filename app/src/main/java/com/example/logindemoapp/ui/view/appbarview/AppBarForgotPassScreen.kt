@@ -12,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
@@ -40,6 +41,6 @@ fun AppBarForgotPassScreenView(coordinator: NavCoordinator) {
 fun AppBarForgotPassScreenPreview(){
     LoginDemoAppTheme {
         AppBarForgotPassScreenView(coordinator =
-        NavCoordinator(navController = rememberNavController()))
+        NavCoordinator(navController = rememberNavController(), LocalContext.current))
     }
 }

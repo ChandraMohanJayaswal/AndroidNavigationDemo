@@ -8,6 +8,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import com.example.logindemoapp.coordinator.NavCoordinator
@@ -34,6 +35,7 @@ fun ScreenRegisterView(
 @Composable
 fun ScreenRegisterViewPreview(){
     LoginDemoAppTheme {
-        ScreenRegisterView(coordinator = NavCoordinator(navController = rememberNavController()))
+        ScreenRegisterView(coordinator = NavCoordinator(navController = rememberNavController(),
+            LocalContext.current))
     }
 }

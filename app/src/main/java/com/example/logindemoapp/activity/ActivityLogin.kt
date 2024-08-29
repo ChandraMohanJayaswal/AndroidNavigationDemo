@@ -16,11 +16,7 @@ class ActivityLogin : ComponentActivity() {
         setContent {
             LoginDemoAppTheme {
                ScreenMainLogin(
-                   startDestination = "log_screen",
-                   loginBtnAction = {
-                       val intent = Intent(this,ActivityHome::class.java)
-                       startActivity(intent)
-                   }
+                   startDestination = "log_screen"
                )
             }
         }

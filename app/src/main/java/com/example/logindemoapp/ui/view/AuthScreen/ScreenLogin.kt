@@ -9,24 +9,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.logindemoapp.activity.ActivityHome
 import com.example.logindemoapp.coordinator.NavCoordinator
 import com.example.logindemoapp.ui.theme.LoginDemoAppTheme
 
 @Composable
-fun ScreenLoginView(
-loginButtonClicked : (()->Unit),
-coordinator: NavCoordinator
-){
+fun ScreenLoginView(coordinator: NavCoordinator){
 
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally) {
         Button(
-            onClick = {  loginButtonClicked() }
+            onClick = {   coordinator.startNewActivity(ActivityHome::class.java) }
         ) {
            Text(text = "Login")
         }
@@ -46,7 +45,7 @@ coordinator: NavCoordinator
 @Composable
 fun ScreenLoginViewPreview(){
     LoginDemoAppTheme {
-        ScreenLoginView(loginButtonClicked = {}, coordinator =
-        NavCoordinator(navController = rememberNavController()))
+        ScreenLoginView( coordinator =
+        NavCoordinator(navController = rememberNavController(), LocalContext.current))
     }
 }

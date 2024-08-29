@@ -8,6 +8,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import com.example.logindemoapp.coordinator.BottomBar
@@ -22,15 +23,16 @@ fun ScreenHomeView(
     startDestination: String,
     logOutAction: () -> Unit
 ) {
+    val context = LocalContext.current
     val navController = rememberNavController()
-    val coordinator: NavCoordinator = remember { NavCoordinator(navController) }
+    val coordinator: NavCoordinator = remember { NavCoordinator(navController,context) }
 
     Scaffold(
         bottomBar = { BottomBar(coordinator)},
         topBar = { TopBar(logOutAction = logOutAction) }
     ) { innerPadding ->
         coordinator.NavigationHost(innerPadding = innerPadding,
-            startDestination = startDestination,logOutAction,coordinator)
+            startDestination = startDestination,coordinator)
     }
 }
 
