@@ -93,4 +93,17 @@ dependencies {
 
     // JUnit 4 for unit testing
     testImplementation ("junit:junit:4.13.2")
+
+    //retrofit
+    // Retrofit
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+
+    // Gson Converter for Retrofit
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    // Kotlinx DateTime for date and time conversion
+    implementation ("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+
+    //serialization
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
 }
