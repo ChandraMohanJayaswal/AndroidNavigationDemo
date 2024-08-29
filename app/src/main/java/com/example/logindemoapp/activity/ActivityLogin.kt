@@ -1,13 +1,11 @@
 package com.example.logindemoapp.activity
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.example.logindemoapp.coordinator.NavItems
+import com.example.logindemoapp.coordinator.ScreenItems
 import com.example.logindemoapp.ui.theme.LoginDemoAppTheme
-import com.example.logindemoapp.ui.view.AuthScreen.ScreenLoginView
 import com.example.logindemoapp.ui.view.ScreenMainLogin
 
 class ActivityLogin : ComponentActivity() {
@@ -17,7 +15,7 @@ class ActivityLogin : ComponentActivity() {
         setContent {
             LoginDemoAppTheme {
                ScreenMainLogin(
-                   startDestination = NavItems.LOG.route
+                   startDestination = ScreenItems.LOG.route
                )
             }
         }

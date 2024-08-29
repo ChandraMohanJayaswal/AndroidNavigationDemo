@@ -17,7 +17,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import com.example.logindemoapp.coordinator.NavCoordinator
-import com.example.logindemoapp.coordinator.NavItems
+import com.example.logindemoapp.coordinator.ScreenItems
 import com.example.logindemoapp.ui.theme.LoginDemoAppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -32,7 +32,7 @@ fun AppBarForgotPassScreenView(coordinator: NavCoordinator) {
             // Button in the TopAppBar
             Icon(Icons.Filled.ArrowBack, contentDescription = "",
                 modifier = Modifier.clickable {
-                    coordinator.nagivateTo(NavItems.LOG.route)
+                    coordinator.nagivateTo(ScreenItems.LOG.route)
                 })
         }
     )

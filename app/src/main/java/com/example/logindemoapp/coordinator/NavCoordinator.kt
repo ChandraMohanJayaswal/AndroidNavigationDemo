@@ -71,28 +71,28 @@ class NavCoordinator(
             navController = navController,
             startDestination = startDestination
         ) {
-            composable(route = NavItems.HOME.route) {
+            composable(route = ScreenItems.HOME.route) {
                 ScreenNavHomeView(innerPadding)
             }
-            composable(route = NavItems.ACTIVITY.route) {
+            composable(route = ScreenItems.ACTIVITY.route) {
                 ScreenNavActivitiesView(innerPadding)
             }
-            composable(route = NavItems.SKILL.route) {
+            composable(route = ScreenItems.SKILL.route) {
                 ScreenNavSkillView(innerPadding)
             }
-            composable(route = NavItems.GROUP.route) {
+            composable(route = ScreenItems.GROUP.route) {
                 ScreenNavGroupsView(innerPadding)
             }
-            composable(route = NavItems.RESOURCE.route) {
+            composable(route = ScreenItems.RESOURCE.route) {
                 ScreenNavResourcesView(innerPadding)
             }
-            composable(route = NavItems.LOG.route) {
+            composable(route = ScreenItems.LOG.route) {
                 ScreenLoginView(coordinator)
             }
-            composable(route = NavItems.REGISTER.route) {
+            composable(route = ScreenItems.REGISTER.route) {
                 ScreenRegisterView(coordinator)
             }
-            composable(route = NavItems.FORGOT.route) {
+            composable(route = ScreenItems.FORGOT.route) {
                 ScreenForgotPassView(coordinator)
             }
         }
@@ -100,11 +100,11 @@ class NavCoordinator(
 
     fun getNavItems(): List<BottomNavItems> {
         return listOf(
-            BottomNavItems(NavItems.HOME.title, NavItems.HOME.icon, NavItems.HOME.route),
-            BottomNavItems(NavItems.ACTIVITY.title, NavItems.ACTIVITY.icon,NavItems.ACTIVITY.route ),
-            BottomNavItems(NavItems.SKILL.title, NavItems.SKILL.icon, NavItems.SKILL.route),
-            BottomNavItems(NavItems.GROUP.title, NavItems.GROUP.icon, NavItems.GROUP.route),
-            BottomNavItems(NavItems.RESOURCE.title, NavItems.RESOURCE.icon, NavItems.RESOURCE.route)
+            BottomNavItems(ScreenItems.HOME.title, ScreenItems.HOME.icon, ScreenItems.HOME.route),
+            BottomNavItems(ScreenItems.ACTIVITY.title, ScreenItems.ACTIVITY.icon,ScreenItems.ACTIVITY.route ),
+            BottomNavItems(ScreenItems.SKILL.title, ScreenItems.SKILL.icon, ScreenItems.SKILL.route),
+            BottomNavItems(ScreenItems.GROUP.title, ScreenItems.GROUP.icon, ScreenItems.GROUP.route),
+            BottomNavItems(ScreenItems.RESOURCE.title, ScreenItems.RESOURCE.icon, ScreenItems.RESOURCE.route)
         )
     }
 }
@@ -115,7 +115,7 @@ data class BottomNavItems(
     val route: String
 )
 
-enum class NavItems(
+enum class ScreenItems(
     val title : String,
     val route : String,
     val icon: ImageVector

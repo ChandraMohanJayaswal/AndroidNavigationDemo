@@ -13,7 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import com.example.logindemoapp.activity.ActivityHome
 import com.example.logindemoapp.coordinator.NavCoordinator
-import com.example.logindemoapp.coordinator.NavItems
+import com.example.logindemoapp.coordinator.ScreenItems
 import com.example.logindemoapp.ui.theme.LoginDemoAppTheme
 
 @Composable
@@ -29,12 +29,12 @@ fun ScreenLoginView(coordinator: NavCoordinator){
            Text(text = "Login")
         }
         Button(
-            onClick = { coordinator.nagivateTo(NavItems.REGISTER.route)}
+            onClick = { coordinator.nagivateTo(ScreenItems.REGISTER.route)}
         ) {
             Text(text = "Register")
         }
         Button(
-            onClick = { coordinator.nagivateTo(NavItems.FORGOT.route) }
+            onClick = { coordinator.nagivateTo(ScreenItems.FORGOT.route) }
         ) {
             Text(text = "Forget Password")
         }
