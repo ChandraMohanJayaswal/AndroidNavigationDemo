@@ -26,7 +26,7 @@ import com.example.logindemoapp.ui.view.navview.ScreenNavSkillView
 
 interface NavCoordinatorInterface {
     fun nagivateTo(route: String)
-    fun startNewActivity(activityClass: Class<*>)
+    fun moveToActivity(activityClass: Class<*>)
     fun finishActivity()
 }
 
@@ -46,7 +46,7 @@ class NavCoordinator(
         }
     }
 
-    override fun startNewActivity(activityClass: Class<*>) {
+    override fun moveToActivity(activityClass: Class<*>) {
         val intent = Intent(context, activityClass)
         context.startActivity(intent)
     }
