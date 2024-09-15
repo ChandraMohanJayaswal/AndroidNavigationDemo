@@ -5,9 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.rememberNavController
-import com.example.logindemoapp.coordinator.BottomBar
 import com.example.logindemoapp.coordinator.NavCoordinator
-import com.example.logindemoapp.coordinator.TopBar
 
 @Composable
 fun ScreenMainLogin(

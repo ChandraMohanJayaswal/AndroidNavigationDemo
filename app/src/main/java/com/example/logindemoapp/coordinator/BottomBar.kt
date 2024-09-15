@@ -17,7 +17,7 @@ fun BottomBar(
         modifier = Modifier.navigationBarsPadding()
     ) {
         coordinator.getNavItems().forEachIndexed { index, item ->
-            val isSelected = coordinator.navController.currentBackStackEntryAsState().value?.destination?.route == item.route
+            val isSelected = coordinator.navHostController.currentBackStackEntryAsState().value?.destination?.route == item.route
             NavigationBarItem(
                 selected = isSelected,
                 onClick = {
@@ -26,9 +26,9 @@ fun BottomBar(
                     }
                 },
                 icon = {
-                    Icon(item.icon, contentDescription = item.label)
+                    Icon(item.icon, contentDescription = item.title)
                 },
-                label = { Text(item.label) }
+                label = { Text(item.title) }
             )
         }
     }

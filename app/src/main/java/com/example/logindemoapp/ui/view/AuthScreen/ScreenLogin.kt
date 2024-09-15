@@ -45,6 +45,6 @@ fun ScreenLoginView(coordinator: NavCoordinator){
 fun ScreenLoginViewPreview(){
     LoginDemoAppTheme {
         ScreenLoginView( coordinator =
-        NavCoordinator(navController = rememberNavController(), LocalContext.current))
+        NavCoordinator(navHostController = rememberNavController(), LocalContext.current))
     }
 }

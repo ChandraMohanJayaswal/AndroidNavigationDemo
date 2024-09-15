@@ -32,7 +32,7 @@ fun AppBarRegisterScreenView(coordinator: NavCoordinator) {
             // Button in the TopAppBar
            Icon(Icons.Filled.ArrowBack, contentDescription = "",
                modifier = Modifier.clickable {
-                   coordinator.nagivateTo(ScreenItems.LOG.route)
+                   coordinator.nagivateTo(ScreenItems.LOGIN.route)
                })
         }
     )
@@ -42,6 +42,6 @@ fun AppBarRegisterScreenView(coordinator: NavCoordinator) {
 fun AppBarRegisterScreenPreview(){
     LoginDemoAppTheme {
         AppBarRegisterScreenView(coordinator =
-        NavCoordinator(navController = rememberNavController(), LocalContext.current))
+        NavCoordinator(navHostController = rememberNavController(), LocalContext.current))
     }
 }

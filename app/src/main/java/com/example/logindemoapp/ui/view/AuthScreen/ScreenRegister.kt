@@ -35,7 +35,7 @@ fun ScreenRegisterView(
 @Composable
 fun ScreenRegisterViewPreview(){
     LoginDemoAppTheme {
-        ScreenRegisterView(coordinator = NavCoordinator(navController = rememberNavController(),
+        ScreenRegisterView(coordinator = NavCoordinator(navHostController = rememberNavController(),
             LocalContext.current))
     }
 }

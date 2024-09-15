@@ -15,7 +15,7 @@ class ActivityLogin : ComponentActivity() {
         setContent {
             LoginDemoAppTheme {
                ScreenMainLogin(
-                   startDestination = ScreenItems.LOG.route
+                   startDestination = ScreenItems.LOGIN.route
                )
             }
         }

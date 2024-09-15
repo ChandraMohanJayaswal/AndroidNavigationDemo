@@ -30,14 +30,14 @@ interface NavCoordinatorInterface {
 }
 
 class NavCoordinator(
-    val navController: NavHostController,
+    val navHostController: NavHostController,
     private val context : Context
 ) : NavCoordinatorInterface {
 
     override fun nagivateTo(route: String) {
-        navController.navigate(route) {
+        navHostController.navigate(route) {
             // To avoid stack build-up
-            popUpTo(navController.graph.startDestinationId) {
+            popUpTo(navHostController.graph.startDestinationId) {
                 saveState = true
             }
             launchSingleTop = true
@@ -68,7 +68,7 @@ class NavCoordinator(
         ) {
 
         NavHost(
-            navController = navController,
+            navController = navHostController,
             startDestination = startDestination
         ) {
             composable(route = ScreenItems.HOME.route) {
@@ -86,7 +86,7 @@ class NavCoordinator(
             composable(route = ScreenItems.RESOURCE.route) {
                 ScreenNavResourcesView(innerPadding)
             }
-            composable(route = ScreenItems.LOG.route) {
+            composable(route = ScreenItems.LOGIN.route) {
                 ScreenLoginView(coordinator)
             }
             composable(route = ScreenItems.REGISTER.route) {
@@ -98,21 +98,21 @@ class NavCoordinator(
         }
     }
 
-    fun getNavItems(): List<BottomNavItems> {
+    fun getNavItems(): List<BottomNavItem> {
         return listOf(
-            BottomNavItems(ScreenItems.HOME.title, ScreenItems.HOME.icon, ScreenItems.HOME.route),
-            BottomNavItems(ScreenItems.ACTIVITY.title, ScreenItems.ACTIVITY.icon,ScreenItems.ACTIVITY.route ),
-            BottomNavItems(ScreenItems.SKILL.title, ScreenItems.SKILL.icon, ScreenItems.SKILL.route),
-            BottomNavItems(ScreenItems.GROUP.title, ScreenItems.GROUP.icon, ScreenItems.GROUP.route),
-            BottomNavItems(ScreenItems.RESOURCE.title, ScreenItems.RESOURCE.icon, ScreenItems.RESOURCE.route)
+            BottomNavItem(title = ScreenItems.HOME.title, icon = ScreenItems.HOME.icon, route = ScreenItems.HOME.route),
+            BottomNavItem(title = ScreenItems.ACTIVITY.title, icon = ScreenItems.ACTIVITY.icon, route = ScreenItems.ACTIVITY.route ),
+            BottomNavItem(title = ScreenItems.SKILL.title, icon = ScreenItems.SKILL.icon, route = ScreenItems.SKILL.route),
+            BottomNavItem(title = ScreenItems.GROUP.title, icon = ScreenItems.GROUP.icon, route = ScreenItems.GROUP.route),
+            BottomNavItem(title = ScreenItems.RESOURCE.title, icon = ScreenItems.RESOURCE.icon, route = ScreenItems.RESOURCE.route)
         )
     }
 }
 
-data class BottomNavItems(
-    val label: String,
-    val icon: ImageVector,
-    val route: String
+data class BottomNavItem(
+    val title: String,
+    val route: String,
+    val icon: ImageVector
 )
 
 enum class ScreenItems(
@@ -125,7 +125,7 @@ enum class ScreenItems(
     SKILL("Skill","skill_screen", icon = Icons.Filled.AccountCircle),
     GROUP("Groups","group_screen", icon = Icons.Filled.CheckCircle),
     RESOURCE("Resources","resources_screen", icon = Icons.Filled.Info),
-    LOG("Log","log_screen",icon = Icons.Filled.Info),
+    LOGIN("Login","login_screen",icon = Icons.Filled.Info),
     REGISTER("Register","register_screen",icon = Icons.Filled.Info),
     FORGOT("Forget","forgot_screen",icon = Icons.Filled.Info)
 }
